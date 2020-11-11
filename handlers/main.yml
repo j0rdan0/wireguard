@@ -1,0 +1,6 @@
+---
+- name: run script
+  command: "{{ SCRIPT_HOST_PATH }}"
+- name: restart service
+  service: name=wg-quick@wg0.service state=restarted
+

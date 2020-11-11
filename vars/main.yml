@@ -1,0 +1,3 @@
+---
+SCRIPT_PATH: "files/configure-wireguard.sh"
+SCRIPT_HOST_PATH: "/tmp/configure-wireguard.sh"

@@ -1,0 +1,18 @@
+galaxy_info:
+  author: j0rdan0
+  description: Ansible Role for deploying an configuring Wireguard on an EC2 Ubuntu instance
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 2.9
+
+   platforms:
+   - name: Ubuntu
+     versions:
+     - 18.04
+     - 20.04
+
+  galaxy_tags: 
+    - wireguard
+    - vpn
+  

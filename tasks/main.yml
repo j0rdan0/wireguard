@@ -1,0 +1,24 @@
+---
+- name: Install and configure Wireguard on Ubuntu EC2 Instance
+  block:
+    - name: Update all packages first
+      apt: name="*" state=latest
+    - name: Install Wireguard
+      apt: name=wireguard state=present
+    - name: Copy Wireguard deploy script on host
+      copy: src={{ SCRIPT_PATH }} dest={{ SCRIPT_HOST_PATH }} mode=777 force=true
+      notify: run script
+    - command: cat /etc/wireguard/publickey
+      register: pubkey
+      notify: restart service
+    - ec2_metadata_facts:
+    - debug:
+        msg: 
+          - "Use the following info for configuring the client"
+          - "----"
+          - "Server pubkey => {{ pubkey.stdout }}"
+          - "Endpoint IP => {{ ansible_ec2_public_ipv4 }}"
+          - "Endpoint PORT => 51820"
+          - "----"
+  when: ansible_os_family == "Debian"
+
